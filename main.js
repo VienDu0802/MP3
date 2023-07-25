@@ -105,10 +105,29 @@ const app = {
       }
     };
   },
+  loadCurrentSong:function(){
+    const heading = $('header h2');
+    const cdThumb = $('.cd-thumb');
+    const audio = $('#audio');
+
+    heading.textContent = this.currentSong.name;
+    cdThumb.style.backgroundImage = `url('${this.currentSong.image}')`;
+    audio.src = this.currentSong.path; 
+
+    // console.log(heading,cdThumb,audio);
+  } ,
   start: function () {
     this.defineProperties();
+
+    //handle DOM Events
     this.handlEvents();
+
+    //Load bài đầu tiên vào UI khi chạy app
+    this.loadCurrentSong();
+
+    //Render lại playlist
     this.render();
+
   },
 };
 
